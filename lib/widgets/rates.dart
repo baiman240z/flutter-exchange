@@ -70,6 +70,10 @@ class RateState extends State<Rate> {
   Widget _build(BuildContext context) {
     AppModel model = AppModel.of(context, rebuildOnChange: true);
 
+    if (!model.loaded) {
+      return _buildLoading(context);
+    }
+
     List<Widget> _widgets = List<Widget>();
     model.enableRates().forEach((key, rate) {
       _widgets.add(_buildRate(
@@ -141,6 +145,28 @@ class RateState extends State<Rate> {
               children: _widgets,
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLoading(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            padding: const EdgeInsets.all(20.0),
+            child: const Text(
+              'Loading...',
+              style: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue,
+              ),
+            ),
+          ),
+          const CircularProgressIndicator(),
         ],
       ),
     );

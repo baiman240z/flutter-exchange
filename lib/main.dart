@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'widgets/splash.dart';
 import 'widgets/rates.dart';
 import 'classes/appmodel.dart';
 
@@ -25,13 +24,10 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blueGrey,
           ),
-          home: Splash(),
+          home: Rate(),
           routes: <String, WidgetBuilder>{
-            '/splash': (BuildContext context) => Splash(),
             '/rate': (BuildContext context) => Rate(),
           }),
     );
   }
-
-
 }

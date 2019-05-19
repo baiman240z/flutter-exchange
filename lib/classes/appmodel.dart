@@ -7,6 +7,7 @@ import 'dart:convert';
 
 class AppModel extends Model {
   static const _url = 'https://www.gaitameonline.com/rateaj/getrate';
+  bool _loaded = false;
   Map<String, Map<String, double>> _rates = {};
   Map<String, bool> _settings = {};
   bool _notification = false;
@@ -18,8 +19,12 @@ class AppModel extends Model {
 
   Map<String, bool> get settings => _settings;
   bool get notification => _notification;
+  bool get loaded => _loaded;
 
   void readRates() async {
+    _loaded = false;
+    notifyListeners();
+
     http.Response response = await http.get(_url);
     JsonDecoder decoder = JsonDecoder();
     try {
@@ -41,6 +46,8 @@ class AppModel extends Model {
       for (String key in keys) {
         _rates[key] = _list[key];
       }
+
+      _loaded = true;
 
       notifyListeners();
     } on FormatException catch (e) {
