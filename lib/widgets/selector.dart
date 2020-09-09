@@ -40,6 +40,10 @@ class SelectorState extends State<Selector> {
             ? model.settings[pairCode] : false,
           onChanged: (bool val) {
             model.saveSetting(pairCode, val);
+            model.logFb('save', {
+              'para_code': pairCode,
+              'flag': val
+            });
           },
         ),
         Text(

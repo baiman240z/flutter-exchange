@@ -85,6 +85,10 @@ class RateState extends State<Rate> {
       ));
     });
 
+    model.logFb('rate', {
+      'count': model.enableRates().length
+    });
+
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Column(

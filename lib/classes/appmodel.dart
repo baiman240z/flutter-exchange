@@ -2,16 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class AppModel extends Model {
   static const _url = 'https://www.gaitameonline.com/rateaj/getrate';
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
+
   bool _loaded = false;
   Map<String, Map<String, double>> _rates = {};
   Map<String, bool> _settings = {};
   bool _notification = false;
   final FirebaseMessaging _fm = FirebaseMessaging();
+
+  AppModel({this.analytics, this.observer});
 
   static AppModel of(BuildContext context, {
     bool rebuildOnChange = false,
@@ -108,5 +115,12 @@ class AppModel extends Model {
       }
     });
     return _results;
+  }
+
+  Future<void> logFb(String name, Map<String, dynamic> parameters) async {
+    await analytics.logEvent(name: name, parameters: parameters);
+    print('@@@@@@@@@@@@@@@@@@@@@ logEvent done');
+    print(name);
+    print(parameters);
   }
 }
