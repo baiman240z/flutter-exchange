@@ -119,8 +119,5 @@ class AppModel extends Model {
 
   Future<void> logFb(String name, Map<String, dynamic> parameters) async {
     await analytics.logEvent(name: name, parameters: parameters);
-    print('@@@@@@@@@@@@@@@@@@@@@ logEvent done');
-    print(name);
-    print(parameters);
   }
 }

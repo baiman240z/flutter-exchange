@@ -8,7 +8,7 @@ class Util {
     _fcm.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("@@@@@@@@@@@@@@@@@@@@@ onMessage] $message");
-        _buildDialog(context, message['notification']['title'], message['notification']['body']);
+        buildDialog(context, message['notification']['title'], message['notification']['body']);
       },
       onLaunch: (Map<String, dynamic> message) async {
         print("@@@@@@@@@@@@@@@@@@@@@ onLaunch: $message");
@@ -26,7 +26,7 @@ class Util {
     });
   }
 
-  static void _buildDialog(BuildContext context, String title, String message) {
+  static void buildDialog(BuildContext context, String title, String message) {
     showDialog(
       context: context,
       barrierDismissible: false,
