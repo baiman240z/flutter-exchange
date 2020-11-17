@@ -29,6 +29,7 @@ dependencies:
   http: ^0.12.0+2
   firebase_analytics: ^6.0.0
   firebase_dynamic_links: ^0.6.0
+  flutter_launcher_icons: ^0.8.1
 
 dev_dependencies:
   flutter_test:
@@ -80,3 +81,8 @@ flutter:
 flutter_native_splash:
   image: assets/images/money.png
   color: "FBEEFF"
+
+flutter_icons:
+  android: "ic_launcher"
+  ios: false
+  image_path: "assets/images/launcher.png"
